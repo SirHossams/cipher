@@ -1,0 +1,51 @@
+#include <iostream>
+
+using namespace std;
+
+void insert(char A[],int n)
+{
+	for (int i=0;i<n;i++)
+		cin >> A[i];
+}
+
+int remove(int index,char A[],int n)
+{
+	for (int i=index;i<n-1;i++)
+		A[i]=A[i+1];
+	return n-1;
+}
+
+void cease_cipher(char A[],int start,int n,int c)
+{
+	for (int i=start;i<n;i++) {
+		if (A[i]>=65 && A[i]<88) {
+		A[i]-=65;
+		A[i]=(A[i]+c)%26;//caesar cipher for upper
+		A[i]+=65;
+		}
+		else if (A[i]>=97 && A[i]<120) {
+		A[i]-=97;
+		A[i]=(A[i]+c)%26;//caesar cipher for lower
+		A[i]+=97;
+		}
+	}
+}
+
+void display(char A[],int n)
+{
+	for (int i=0;i<n;i++)
+		cout << A[i];
+	cout << endl;
+}
+
+int main()
+{
+	char A[1000];
+	int n;
+	cin >> n;
+	insert(A,n);
+	cease_cipher(A,0,n,7);
+	display(A,n);
+	system("pause");
+	return 0;
+}
